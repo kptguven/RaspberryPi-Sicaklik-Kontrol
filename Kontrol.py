@@ -26,10 +26,10 @@ GPIO.setwarnings(False)
 pinListesi = [17, 27, 22, 18]
 
 while True:
- MinDeger = input("En dÃ¼ÅÃ¼k sÄ±caklÄ±ÄÄ± belirleyiniz:")
- MaxDeger = input("En yÃ¼ksek sÄ±caklÄ±ÄÄ± belirleyiniz:")
+ MinDeger = input("En düşük sıcaklığı belirleyiniz:")
+ MaxDeger = input("En yüksek sıcaklığı belirleyiniz:")
  if MinDeger>=MaxDeger:
-   print("En dÃ¼ÅÃ¼k sÄ±caklÄ±k, en yÃ¼ksek sÄ±caklÄ±ktan bÃ¼yÃ¼k veya eÅit olamaz.")
+   print("En düşük sıcaklık, en yüksek sıcaklıktan büyük veya eşit olamaz.")
  else:
    break
 
@@ -65,24 +65,23 @@ def read_temp():
         return temp_c
 
 while True:
-   print "BaÅlama zamanÄ±:", localtime
+   print "Başlama zamanı:", localtime
    if read_temp() < MinOrtamSicakligi:
 	GPIO.output(18, GPIO.LOW)
 	GPIO.output(22, GPIO.LOW)
-	print 'Rezistans ve motor Ã§alÄ±ÅtÄ±rÄ±ldÄ±.', 'SÄ±caklÄ±k', read_temp(), 'C derece.'
+	print 'Rezistans ve motor çalıştırıldı.', 'Sıcaklık', read_temp(), 'C derece.'
    else:
 	GPIO.output(18, GPIO.HIGH)
 	GPIO.output(22, GPIO.HIGH)
-	print 'Rezistans ve motor durduruldu', 'SÄ±caklÄ±k', read_temp(), 'C derece.'
+	print 'Rezistans ve motor durduruldu', 'Sıcaklık', read_temp(), 'C derece.'
    if read_temp() >= MaxOrtamSicakligi:
 	GPIO.output(17, GPIO.LOW)
 	GPIO.output(27, GPIO.LOW)
-	print "SoÄutucu ve motor Ã§alÄ±ÅtÄ±rÄ±ldÄ±", "SÄ±caklÄ±k", read_temp(), "C derece."
+	print "Soğutucu ve motor çalıştırıldı", "Sıcaklık", read_temp(), "C derece."
    else:
 	GPIO.output(17, GPIO.HIGH)
 	GPIO.output(27, GPIO.HIGH)
-	print "SoÄutucu ve motor durduruldu", "SÄ±caklÄ±k", read_temp(), "C derece."
+	print "Soğutucu ve motor durduruldu", "Sıcaklık", read_temp(), "C derece."
 #   print(read_temp()) 
    sleep(60)
 print "Local current time :", localtime
-
